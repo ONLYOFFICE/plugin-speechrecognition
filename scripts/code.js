@@ -197,7 +197,7 @@
 				}
 				if (event.error == 'not-allowed') {
 					if (event.timeStamp - start_timestamp < 100) {
-						alert('Permission to use microphone is blocked. To change, go to chrome://settings/contentExceptions#media-stream');
+						alert('Permission to use microphone is blocked. To change, go to chrome://settings/content/microphone');
 					} else {
 						alert('Permission to use microphone was denied.');
 					}
