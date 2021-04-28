@@ -186,7 +186,7 @@
 
 			recognition.onerror = function(event) {
 			    ignore_onend = false;
-			    $('#start_button').css('background-color', oTheme["background-toolbar"]);
+			    $('#micro_img_path').toggleClass('recording_color');
 				$('#start_info').show();
 				$('#speak_info').hide();
 				if (event.error == 'no-speech') {
@@ -264,12 +264,11 @@
 		function capitalize(s) {
 			return s.replace(first_char, function(m) { return m.toUpperCase(); });
 		};
-
-		start_button.onclick = function(event) {
+        start_button.onclick = function(event) {
 			if (recognizing) {
 			    ignore_onend = false;
 				recognition.stop();
-				$('#start_button').css('background-color', oTheme["background-toolbar"]);
+				$('#micro_img_path').toggleClass('recording_color');
 				$('#start_info').show();
 				$('#speak_info').hide();
 				return;
@@ -277,10 +276,7 @@
 
 			$('#start_info').hide();
             $('#speak_info').show();
-			if (oTheme.type === 'dark')
-			    $('#start_button').css('background-color', oTheme["background-normal"]);
-			else
-			    $('#start_button').css('background-color', oTheme["highlight-button-pressed"]);
+            $('#micro_img_path').toggleClass('recording_color');
 
 			ignore_onend = true;
 			final_transcript = '';
@@ -294,23 +290,19 @@
     {
         window.Asc.plugin.onThemeChangedBase(theme);
 
-        oTheme = theme;
-        var rule = '.btn-text-default:active { background-color : ' + theme["background-toolbar"] + ' !important' + ';}'
+        var sRecordingColor = theme.type === 'dark' ? '#EE5959' : '#EC4949';
+        var rule = '.recording_color { fill: ' + sRecordingColor + ' !important;}\n';
+        rule += '.btn-text-default:hover { background-color : ' + theme["highlight-button-pressed"] + ' !important;}';
         var styleTheme = document.createElement('style');
         styleTheme.type = 'text/css';
         styleTheme.innerHTML = rule;
         document.getElementsByTagName('head')[0].appendChild(styleTheme);
 
         $('.btn-text-default').css('border-color', theme["background-toolbar"]);
-        $('.btn-text-default').css('background-color', oTheme["background-toolbar"]);
-        if (theme.type === 'dark') {
-            $('#img_dark').show();
-            $('#img_light').hide();
-        }
-        else {
-            $('#img_dark').hide();
-            $('#img_light').show();
-        }
+        $('.btn-text-default').css('background-color', theme["background-toolbar"]);
+        $('.btn-text-default:hover').css('background-color', "#fff !important");
+
+        $('#micro_img_path').css('fill', theme["text-normal"]);
     };
 
 })(window, undefined);
