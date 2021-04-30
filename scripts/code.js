@@ -125,6 +125,11 @@
 
 	var is_chrome = ((navigator.userAgent.indexOf("Chrome") !== -1) && (navigator.vendor.indexOf("Google Inc") !== -1)) ? true : false;
     var	ignore_onend = true;
+    var sLastResult = '';
+
+    String.prototype.replaceAt = function(nIndex, sReplacement) {
+      return this.substr(0, nIndex) + sReplacement + this.substr(nIndex + sReplacement.length);
+    }
 
 	window.Asc.plugin.init = function() {
 		if (!is_chrome) {
@@ -238,7 +243,25 @@
 					}
 				}
 				final_transcript = capitalize(final_transcript);
-				if (event.results[0].isFinal) {
+				if (event.results[0].isFinal && final_transcript !== '') {
+				    if (sLastResult[sLastResult.length - 1] === '.')
+				        for (var nChar = 0; nChar < final_transcript.length; nChar++) {
+				            if (final_transcript[nChar] !== ' ') {
+				                final_transcript = final_transcript.replaceAt(nChar, final_transcript[nChar].toUpperCase());
+				                break;
+				            }
+				        }
+				    else {
+				        for (var nChar = 0; nChar < final_transcript.length; nChar++) {
+				            if (final_transcript[nChar] !== ' ') {
+				                final_transcript = final_transcript.replaceAt(nChar, final_transcript[nChar].toLowerCase());
+				                break;
+				            }
+				        }
+				    }
+				    if (sLastResult === '')
+				        final_transcript = final_transcript.trim();
+				    sLastResult = final_transcript;
 					window.Asc.plugin.executeMethod("PasteHtml",[linebreak(final_transcript)]);
 				}
 				interim_span.innerHTML = linebreak(interim_transcript);
