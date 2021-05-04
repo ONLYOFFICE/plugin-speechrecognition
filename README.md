@@ -4,7 +4,7 @@ Type with your voice in ONLYOFFICE Docs.
 
 The plugin uses [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API).
 
-It is called "Speech input" in the interface and isn't installed by default in cloud, [self-hosted](https://github.com/ONLYOFFICE/DocumentServer) and [desktop version](https://github.com/ONLYOFFICE/DesktopEditors) of ONLYOFFICE editors.
+The plugin can be installed manually to the [self-hosted](https://github.com/ONLYOFFICE/DocumentServer) of ONLYOFFICE editors.
 
 ## How to use
 
