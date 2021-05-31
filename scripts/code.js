@@ -244,7 +244,7 @@
 				}
 				final_transcript = capitalize(final_transcript);
 				if (event.results[0].isFinal && final_transcript !== '') {
-				    if (sLastResult[sLastResult.length - 1] === '.')
+				    if (sLastResult[sLastResult.length - 1] === '.' || sLastResult === '')
 				        for (var nChar = 0; nChar < final_transcript.length; nChar++) {
 				            if (final_transcript[nChar] !== ' ') {
 				                final_transcript = final_transcript.replaceAt(nChar, final_transcript[nChar].toUpperCase());
