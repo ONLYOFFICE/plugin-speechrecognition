@@ -315,7 +315,9 @@
 
         var sRecordingColor = theme.type === 'dark' ? '#EE5959' : '#EC4949';
         var rule = '.recording_color { fill: ' + sRecordingColor + ' !important;}\n';
-        rule += '.btn-text-default:hover { background-color : ' + theme["highlight-button-pressed"] + ' !important;}';
+        rule += '.btn-text-default:hover { background-color : ' + theme["highlight-button-pressed"] + ' !important;}\n';
+        rule += ".select2-container--default.select2-container--open .select2-selection__arrow b { border-color : " + window.Asc.plugin.theme["text-normal"] + " !important; }";
+
         var styleTheme = document.createElement('style');
         styleTheme.type = 'text/css';
         styleTheme.innerHTML = rule;
